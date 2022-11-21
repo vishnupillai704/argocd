@@ -1,1 +1,23 @@
-
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: argo-deploy
+  labels:
+    app: argo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: argo
+  template:
+    metadata:
+      labels:
+        app: argo
+    spec: 
+      terminationGracePeriodSeconds: 1
+      containers:
+      - name: argo-pod
+        image: vishnu981824/app1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8082
